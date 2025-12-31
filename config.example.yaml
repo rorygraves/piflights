@@ -1,0 +1,38 @@
+# Flight Display Configuration
+# Copy this file to config.yaml and update with your settings
+
+api:
+  # Your FlightRadar24 API key
+  # Can also be set via FR24_API_KEY environment variable
+  key: "your-fr24-api-key-here"
+  timeout: 30
+  # API endpoint type: "light" or "full"
+  # - light: Basic position data (callsign, lat/lon, altitude, speed, heading)
+  # - full: Complete flight data (includes route, aircraft type, airline) - requires higher tier
+  endpoint_type: light
+
+location:
+  # Center point for distance calculations and bounding box
+  # Example: London Heathrow area
+  center_lat: 51.4700
+  center_lon: -0.4543
+
+  # Radius in km to search for flights (creates a square bounding box)
+  bounding_box_km: 100
+
+display:
+  # How often to refresh data (seconds)
+  refresh_interval: 10
+
+  # Maximum number of flights to display
+  max_flights: 50
+
+  # Sort by: distance, altitude, or callsign
+  sort_by: distance
+  sort_ascending: true
+
+ui:
+  # Run in fullscreen mode
+  fullscreen: true
+  # Show mouse cursor
+  show_cursor: false

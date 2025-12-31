@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+eggs/
+*.egg-info/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Poetry
+poetry.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Secrets and keys
+*.pem
+*.key
+*secret*
+*.gpg
+pgp-*.txt
+
+# Logs
+*.log
+/tmp/
+
+# Config with secrets
+config.yaml
