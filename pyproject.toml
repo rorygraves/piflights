@@ -1,5 +1,5 @@
 [project]
-name = "flight-display"
+name = "piflights"
 version = "0.1.0"
 description = "FlightRadar24 display for Raspberry Pi"
 authors = [
@@ -14,7 +14,7 @@ dependencies = [
 
 
 [project.scripts]
-flight-display = "flight_display.main:main"
+piflights = "flight_display.main:main"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

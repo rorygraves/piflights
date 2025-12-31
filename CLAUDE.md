@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Flight Display is a Raspberry Pi application that displays live flight data from FlightRadar24 on a 7" touchscreen (800x480). Built with Python 3.9+ and Tkinter, it supports both live API data and a demo mode with simulated flights.
+PiFlights is a Raspberry Pi application that displays live flight data from FlightRadar24 on a 7" touchscreen (800x480). Built with Python 3.9+ and Tkinter, it supports both live API data and a demo mode with simulated flights.
 
 ## Commands
 
@@ -13,16 +13,16 @@ Flight Display is a Raspberry Pi application that displays live flight data from
 poetry install
 
 # Run in demo mode (no API key required)
-poetry run flight-display --demo --windowed
+poetry run piflights --demo --windowed
 
 # Run with live API data
-poetry run flight-display --windowed
+poetry run piflights --windowed
 
 # Run with verbose logging
-poetry run flight-display --demo --windowed -v
+poetry run piflights --demo --windowed -v
 
 # Run fullscreen (production mode)
-poetry run flight-display
+poetry run piflights
 ```
 
 ## Architecture
@@ -53,7 +53,7 @@ poetry run flight-display
 
 ## Configuration
 
-Config file: `~/.config/flight-display/config.yaml`
+Config file: `~/.config/piflights/config.yaml`
 Example: `config.example.yaml`
 API key can also be set via `FR24_API_KEY` environment variable.
 

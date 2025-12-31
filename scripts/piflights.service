@@ -1,17 +1,17 @@
-# Systemd service file for Flight Display
+# Systemd service file for PiFlights
 # Alternative to desktop autostart - use this for headless/kiosk setups
 #
 # Installation:
-#   sudo cp flight-display.service /etc/systemd/system/
+#   sudo cp piflights.service /etc/systemd/system/
 #   sudo systemctl daemon-reload
-#   sudo systemctl enable flight-display
-#   sudo systemctl start flight-display
+#   sudo systemctl enable piflights
+#   sudo systemctl start piflights
 #
 # View logs:
-#   journalctl -u flight-display -f
+#   journalctl -u piflights -f
 
 [Unit]
-Description=Flight Display Application
+Description=PiFlights Application
 After=graphical.target
 Wants=graphical.target
 
@@ -28,13 +28,13 @@ Environment=XAUTHORITY=/home/pi/.Xauthority
 # Environment=FR24_API_KEY=your-api-key-here
 
 # Working directory
-WorkingDirectory=/home/pi/flight-display
+WorkingDirectory=/home/pi/piflights
 
 # Wait for display to be ready
 ExecStartPre=/bin/sleep 10
 
 # Run the application via Poetry
-ExecStart=/home/pi/.local/bin/poetry run flight-display
+ExecStart=/home/pi/.local/bin/poetry run piflights
 
 # Restart on failure
 Restart=always

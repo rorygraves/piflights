@@ -1,4 +1,4 @@
-# Flight Display
+# PiFlights
 
 A Raspberry Pi application that displays live flight data from FlightRadar24 on the official 7" touchscreen (800x480).
 
@@ -20,8 +20,8 @@ Try the application immediately without any configuration:
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd flight-display
+git clone https://github.com/rorygraves/piflights.git
+cd piflights
 
 # Install Poetry (if needed)
 curl -sSL https://install.python-poetry.org | python3 -
@@ -30,7 +30,7 @@ curl -sSL https://install.python-poetry.org | python3 -
 poetry install
 
 # Run in demo mode (no API key required!)
-poetry run flight-display --demo --windowed
+poetry run piflights --demo --windowed
 ```
 
 Press `Escape` to exit.
@@ -56,8 +56,8 @@ Press `Escape` to exit.
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url> ~/flight-display
-cd ~/flight-display
+git clone https://github.com/rorygraves/piflights.git ~/piflights
+cd ~/piflights
 ```
 
 ### 2. Install Poetry
@@ -76,7 +76,7 @@ export PATH="$HOME/.local/bin:$PATH"
 ### 3. Install Python dependencies
 
 ```bash
-cd ~/flight-display
+cd ~/piflights
 poetry install
 ```
 
@@ -91,13 +91,13 @@ sudo apt install python3-tk unclutter
 
 ```bash
 # Create config directory
-mkdir -p ~/.config/flight-display
+mkdir -p ~/.config/piflights
 
 # Copy example config
-cp config.example.yaml ~/.config/flight-display/config.yaml
+cp config.example.yaml ~/.config/piflights/config.yaml
 
 # Edit with your settings
-nano ~/.config/flight-display/config.yaml
+nano ~/.config/piflights/config.yaml
 ```
 
 **Important**: Add your FlightRadar24 API key and set your location coordinates.
@@ -110,29 +110,29 @@ Test the application with simulated flight data:
 
 ```bash
 # Basic demo mode (fullscreen)
-poetry run flight-display --demo
+poetry run piflights --demo
 
 # Windowed demo mode (for testing)
-poetry run flight-display --demo --windowed
+poetry run piflights --demo --windowed
 
 # Demo with custom location
-poetry run flight-display --demo --windowed --lat 40.7128 --lon -74.0060  # New York
+poetry run piflights --demo --windowed --lat 40.7128 --lon -74.0060  # New York
 ```
 
 ### Live Mode (Requires API Key)
 
 ```bash
 # Run with default config
-poetry run flight-display
+poetry run piflights
 
 # Windowed mode for testing
-poetry run flight-display --windowed
+poetry run piflights --windowed
 
 # With specific config file
-poetry run flight-display -c /path/to/config.yaml
+poetry run piflights -c /path/to/config.yaml
 
 # Enable debug logging
-poetry run flight-display -v --windowed
+poetry run piflights -v --windowed
 ```
 
 ### All Command Line Options
@@ -153,7 +153,7 @@ Options:
 
 ## Configuration
 
-The configuration file is located at `~/.config/flight-display/config.yaml`.
+The configuration file is located at `~/.config/piflights/config.yaml`.
 
 ### Full Configuration Reference
 
@@ -206,7 +206,7 @@ You can set the API key via environment variable instead of the config file:
 
 ```bash
 export FR24_API_KEY="your-api-key-here"
-poetry run flight-display
+poetry run piflights
 ```
 
 ## Raspberry Pi Setup
@@ -216,7 +216,7 @@ poetry run flight-display
 Run the installation script:
 
 ```bash
-cd ~/flight-display
+cd ~/piflights
 ./scripts/install.sh
 ```
 
@@ -233,12 +233,12 @@ This script will:
 ```bash
 mkdir -p ~/.config/autostart
 
-cat > ~/.config/autostart/flight-display.desktop << 'EOF'
+cat > ~/.config/autostart/piflights.desktop << 'EOF'
 [Desktop Entry]
 Type=Application
-Name=Flight Display
+Name=PiFlights
 Comment=FlightRadar24 Display Application
-Exec=/usr/bin/bash -c 'cd ~/flight-display && poetry run flight-display'
+Exec=/usr/bin/bash -c 'cd ~/piflights && poetry run piflights'
 Terminal=false
 Hidden=false
 X-GNOME-Autostart-enabled=true
@@ -272,18 +272,18 @@ For headless/kiosk setups, you can use the systemd service:
 
 ```bash
 # Copy service file
-sudo cp scripts/flight-display.service /etc/systemd/system/
+sudo cp scripts/piflights.service /etc/systemd/system/
 
 # Edit to set your API key (optional)
-sudo nano /etc/systemd/system/flight-display.service
+sudo nano /etc/systemd/system/piflights.service
 
 # Enable and start
 sudo systemctl daemon-reload
-sudo systemctl enable flight-display
-sudo systemctl start flight-display
+sudo systemctl enable piflights
+sudo systemctl start piflights
 
 # View logs
-journalctl -u flight-display -f
+journalctl -u piflights -f
 ```
 
 ### Reboot to Start
@@ -298,7 +298,7 @@ The display will start automatically after boot.
 
 ```
 +------------------------------------------------------------------------+
-|  FLIGHT DISPLAY  [DEMO MODE]                              [● Connected]|
+|  PIFLIGHTS  [DEMO MODE]                                   [● Connected]|
 +------------------------------------------------------------------------+
 | CALLSIGN | AIRLINE | A/C  |      ROUTE      | ALT ft | SPD kt| HDG|DIST|
 +------------------------------------------------------------------------+
@@ -330,7 +330,7 @@ The display will start automatically after boot.
 
 1. **Check logs:**
    ```bash
-   cat /tmp/flight-display.log
+   cat /tmp/piflights.log
    ```
 
 2. **Verify your API key is correct:**
@@ -341,7 +341,7 @@ The display will start automatically after boot.
 
 3. **Test in demo mode first:**
    ```bash
-   poetry run flight-display --demo --windowed
+   poetry run piflights --demo --windowed
    ```
 
 ### No flights showing
@@ -381,7 +381,7 @@ The application handles network issues gracefully:
 ### Project Structure
 
 ```
-flight-display/
+piflights/
 ├── pyproject.toml              # Poetry project configuration
 ├── config.example.yaml         # Example configuration file
 ├── README.md                   # This file
@@ -413,10 +413,10 @@ flight-display/
 poetry install
 
 # Run with verbose logging in windowed mode
-poetry run flight-display --demo --windowed -v
+poetry run piflights --demo --windowed -v
 
 # Run with live API
-poetry run flight-display --windowed -v
+poetry run piflights --windowed -v
 ```
 
 ### Key Technologies
